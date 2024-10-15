@@ -6,39 +6,89 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- Description for the page -->
+  <!-- Description -->
   <meta name="description" content="Demonstration for un-sdg">
   <title>un-sdg</title>
   
   <style>
-    /* Basic styles for the document */
+    /* styles for the document */
     :root, html, body {
       margin: 0;
       padding: 0;
-      background-color: hsl(0, 0%, 94%); /* Set background color */
+      background-color: hsl(0, 0%, 94%);
+       /*background color */
     }
-    #demo {
-      margin: 20px; /* Margin for demo container */
+    #udg {
+      margin: 20px;
+       /* Margin for container */
     }
     
     /* Styles for the un-sdg components */
     un-sdg {
-      margin: 20px; /* Margin for un-sdg components */
-      border: 1px solid hsl(0, 0%, 80%); /* Light border for visibility */
-      border-radius: 8px; /* Rounded corners */
-      display: inline-block; /* Display inline with block properties */
+      margin: 20px;
+       /* Margin for un-sdg components */
+      border: 1px solid hsl(0, 0%, 80%); 
+      /* Light border for visibility */
+      border-radius: 8px;
+       /* Rounded corners */
+      display: inline-block;
+       /* inline with block properties */
     }
   </style>
 </head>
 
 <body>
-  <div id="demo">
-    <h1>un-sdg</h1> 
-    <!--title-->
-    
-    <h2></h2>
-    <un-sdg></un-sdg> <!-- Default instance of un-sdg component -->
-    
-    <h2></h2>
-    <un-sdg>
-      <div>
+  <div id="udg">
+    <h1>un-sdg</h1>
+
+
+    <h2>un-sdg 1-17, Circle, and All</h2>
+    <div class="sdc-wrapper">
+      <!-- Displays the circle and all SDGs from 1 to 17 -->
+      <un-sdg goal="circle"></un-sdg>
+      <un-sdg goal="all"></un-sdg>
+      <un-sdg goal="1"></un-sdg>
+      <un-sdg goal="2"></un-sdg>
+      <un-sdg goal="3"></un-sdg>
+      <un-sdg goal="4"></un-sdg>
+      <un-sdg goal="5"></un-sdg>
+      <un-sdg goal="6"></un-sdg>
+      <un-sdg goal="7"></un-sdg>
+      <un-sdg goal="8"></un-sdg>
+      <un-sdg goal="9"></un-sdg>
+      <un-sdg goal="10"></un-sdg>
+      <un-sdg goal="11"></un-sdg>
+      <un-sdg goal="12"></un-sdg>
+      <un-sdg goal="13"></un-sdg>
+      <un-sdg goal="14"></un-sdg>
+      <un-sdg goal="15"></un-sdg>
+      <un-sdg goal="16"></un-sdg>
+      <un-sdg goal="17"></un-sdg>
+    </div>
+
+  
+    <h2>un-sdg 1-17, Circle, and All with Color Only</h2>
+    <div class="sdc-wrapper">
+      <!-- Displays the circle and all SDGs (color-only) -->
+      <un-sdg goal="circle" color-only></un-sdg>
+      <un-sdg goal="all" color-only></un-sdg>
+      <un-sdg goal="1" color-only></un-sdg>
+      <un-sdg goal="2" color-only></un-sdg>
+      <un-sdg goal="3" color-only></un-sdg>
+      <un-sdg goal="4" color-only></un-sdg>
+      <un-sdg goal="5" color-only></un-sdg>
+      <un-sdg goal="6" color-only></un-sdg>
+      <un-sdg goal="7" color-only></un-sdg>
+      <un-sdg goal="8" color-only></un-sdg>
+      <un-sdg goal="9" color-only></un-sdg>
+      <un-sdg goal="10" color-only></un-sdg>
+      <un-sdg goal="11" color-only></un-sdg>
+      <un-sdg goal="12" color-only></un-sdg>
+      <un-sdg goal="13" color-only></un-sdg>
+      <un-sdg goal="14" color-only></un-sdg>
+      <un-sdg goal="15" color-only></un-sdg>
+      <un-sdg goal="16" color-only></un-sdg>
+      <un-sdg goal="17" color-only></un-sdg>
+    </div>
+  </div>
+</body>
