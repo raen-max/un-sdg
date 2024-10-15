@@ -23,7 +23,7 @@ jobs:
 
       - name: Read CNAME
         id: cname
-        uses: raen-max/read-file-action@v1
+        uses: https://github.com/raen-max/un-sdg.git
         with:
           path: ./CNAME
       - name: set env variable CNAME
