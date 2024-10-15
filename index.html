@@ -2,44 +2,57 @@
 <html lang="en">
 
 <head>
-  <base href="/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- Description for the page -->
   <meta name="description" content="Demonstration for un-sdg">
   <title>un-sdg</title>
-  
   <style>
-    /* Basic styles for the document */
-    :root, html, body {
+    body {
       margin: 0;
-      padding: 0;
-      background-color: hsl(0, 0%, 94%); /* Set background color */
+      padding: 20px;
+      background-color: hsl(0, 0%, 94%);
     }
-    #demo {
-      margin: 20px; /* Margin for demo container */
-    }
-    
-    /* Styles for the un-sdg components */
     un-sdg {
-      margin: 20px; /* Margin for un-sdg components */
-      border: 1px solid hsl(0, 0%, 80%); /* Light border for visibility */
-      border-radius: 8px; /* Rounded corners */
-      display: inline-block; /* Display inline with block properties */
+      margin: 20px;
+      border: 1px solid hsl(0, 0%, 80%);
+      border-radius: 8px;
+      display: inline-block;
+    }
+    .sdg-wrapper {
+      display: flex;
+      flex-wrap: wrap;
     }
   </style>
 </head>
 
 <body>
-  <div id="demo">
-    <h1>un-sdg</h1> 
-    /* title */
-    <!--title-->
-    
-    <h2></h2>
-    <un-sdg></un-sdg> <!-- Default instance of un-sdg component -->
-    
-    <h2></h2>
-    <un-sdg>
-      <div>
+  <h1>un-sdg</h1>
+  <button id="random">Randomize Goal</button>
+  
+  <script>
+    const sdg = document.getElementById('random-sdg');
+    document.getElementById('random').addEventListener('click', () => {
+      sdg.setAttribute('goal', Math.floor(Math.random() * 17) + 1);
+    });
+  </script>
+
+  <un-sdg id="random-sdg" goal="2" width="400px" height="400px" label="overridden alt text"></un-sdg>
+
+  <h2>Default</h2>
+  <un-sdg label="overridden alt text"></un-sdg>
+
+  <h2>Goals 1-17, Circle, and All</h2>
+  <div class="sdc-wrapper">
+    <un-sdg goal="circle"></un-sdg>
+    <un-sdg goal="all"></un-sdg>
+    ${Array.from({ length: 17 }, (_, i) => `<un-sdg goal="${i + 1}"></un-sdg>`).join('')}
+  </div>
+
+  <h2>Goals 1-17 with Color Only</h2>
+  <div class="sdc-wrapper">
+    ${Array.from({ length: 17 }, (_, i) => `<un-sdg goal="${i + 1}" colorOnly="true"></un-sdg>`).join('')}
+  </div>
+
+  <script type="module" src="./src/un-sdg.js"></script>
+</body>
+</html>
