@@ -23,7 +23,7 @@ jobs:
 
       - name: Read CNAME
         id: cname
-        uses: juliangruber/read-file-action@v1
+        uses: raen-max/read-file-action@v1
         with:
           path: ./CNAME
       - name: set env variable CNAME
