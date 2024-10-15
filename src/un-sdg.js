@@ -2,6 +2,26 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 new URL('../lib/svgs/goal-1.svg', import.meta.url).href;
 
+const goalData = [
+  { name: 'No Poverty', color: '#e5243b', image: new URL('../lib/svgs/goal-1.svg', import.meta.url).href },
+  { name: 'Zero Hunger', color: '#dda63a' },
+  { name: 'Good Health and Well-being', color: '#4c9f38' },
+  { name: 'Quality Education', color: '#c5192d' },
+  { name: 'Gender Equality', color: '#ff3a21' },
+  { name: 'Clean Water and Sanitation', color: '#26bde2' },
+  { name: 'Affordable and Clean Energy', color: '#fcc30b' },
+  { name: 'Decent Work and Economic Growth', color: '#a21942' },
+  { name: 'Industry, Innovation and Infrastructure', color: '#fd6925' },
+  { name: 'Reduced Inequalities', color: '#dd1367' },
+  { name: 'Sustainable Cities and Communities', color: '#fd9d24' },
+  { name: 'Responsible Consumption and Production', color: '#bf8b2e' },
+  { name: 'Climate Action', color: '#3f7e44' },
+  { name: 'Life Below Water', color: '#0a97d9' },
+  { name: 'Life on Land', color: '#56c02b' },
+  { name: 'Peace, Justice and Strong Institutions', color: '#00689d' },
+  { name: 'Partnerships for the Goals', color: '#19486a' },
+];
+
 export class unSdg extends DDDSuper(LitElement) {
 
   static get tag() {
@@ -12,31 +32,27 @@ export class unSdg extends DDDSuper(LitElement) {
     super();
     this.title = "";
     this.goal = "circle";
+    this.label = "";
     this.imgSrc = new URL('../lib/svgs/circle.png', import.meta.url).href;
-    this.width = "";
-    this.height = "";
     this.loading = "lazy";
     this.fetchPriority = "low";
+    this.colorOnly = false;
+    this.alt = null;
   }
 
-  /** 
-   * This initializes properties. 
-   */
   static get properties() {
     return {
       title: { type: String },
-      goal: { type: String },
+      goal: { type: String, reflect: true },
       imgSrc: { type: String },
-      width: { type: String },
-      height: { type: String },
       loading: { type: String },
       fetchPriority: { type: String },
-      colorOnly: { type: String },
-      isImageVisible: { type: Boolean }
+      colorOnly: { type: Boolean, attribute: 'color-only', reflect: true },
+      label: { type: String },
+      alt: { type: String }
     };
   }
 
-  /** This defines said properties. */
   static get styles() {
     return [super.styles,
       css`
@@ -46,67 +62,60 @@ export class unSdg extends DDDSuper(LitElement) {
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
         font-size: var(--un-sdg-font-size, var(--ddd-font-size-s));
+        width: 254px;
+        height: 254px;
       }
-      /** :host declares variables for CSS */
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
-      div {
-        padding: 0;
-        margin: 0;
+      .color-only {
+        width: 100%;
+        height: 100%;
       }
     `];
   }
 
   render() {
+    if (this.colorOnly) {
+      const goalNumber = parseInt(this.goal);
+      if (goalNumber >= 1 && goalNumber <= 17) {
+        const color = goalData[goalNumber - 1].color;
+        return html`<div class="color-only" style="background-color: ${color};"></div>`;
+      }
+    }
+
     return html`
-      <div class="wrapper">
-        <div>${this.title}</div>
-        <slot></slot>
-      </div>
-    `;
+    <img
+      src="${this.imgSrc}"
+      alt="${this.label || this.alt || this.title}"
+      loading="${this.loading}"
+      fetchpriority="${this.fetchPriority}"
+    />`;
   }
 
   updated(changedProperties) {
     if (changedProperties.has('goal')) {
-      this.updateAlt();
+      this.updateGoalData();
     }
   }
 
-  /**
-   * Update the alt text based on the goal attribute.
-   */
-  updateAlt() {
-    const goal = this.goal;
-    const goalLabels = {
-      circle: "Sustainable developments logo",
-      all: "Goal 1: No poverty, Goal 2: Zero hunger, Goal 3: Good health and well-being, Goal 4: Quality education, Goal 5: Gender equality, Goal 6: Clean water and sanitation, Goal 7: Affordable and clean energy, Goal 8: Decent work and economic growth, Goal 9: Industry, innovation and infrastructure, Goal 10: Reduced inequalities, Goal 11: Sustainable cities and communities, Goal 12: Responsible consumption and production, Goal 13: Climate action, Goal 14: Life below water, Goal 15: Life on land, Goal 16: Peace, justice and strong institutions, Goal 17: Partnerships for the goals",
-      '1': "Goal 1: No poverty",
-      '2': "Goal 2: Zero hunger",
-      '3': "Goal 3: Good health and well-being",
-      '4': "Goal 4: Quality education",
-      '5': "Goal 5: Gender equality",
-      '6': "Goal 6: Clean water and sanitation",
-      '7': "Goal 7: Affordable and clean energy",
-      '8': "Goal 8: Decent work and economic growth",
-      '9': "Goal 9: Industry, innovation and infrastructure",
-      '10': "Goal 10: Reduced inequalities",
-      '11': "Goal 11: Sustainable cities and communities",
-      '12': "Goal 12: Responsible consumption and production",
-      '13': "Goal 13: Climate action",
-      '14': "Goal 14: Life below water",
-      '15': "Goal 15: Life on land",
-      '16': "Goal 16: Peace, justice and strong institutions",
-      '17': "Goal 17: Partnerships for the goals"
-    };
-
-    this.label = goalLabels[goal] || '';
+  updateGoalData() {
+    const goalNumber = parseInt(this.goal);
+    if (this.goal === 'all') {
+      this.imgSrc = new URL(`./lib/svgs/goal-all.svg`, import.meta.url).href;
+      this.alt = 'All Sustainable Development Goals';
+    } else if (this.goal === 'circle') {
+      this.imgSrc = new URL(`./lib/svgs/circle.png`, import.meta.url).href;
+      this.alt = 'Sustainable Development Goals Circle';
+    } else if (goalNumber >= 1 && goalNumber <= 17) {
+      this.imgSrc = goalData[goalNumber - 1].image || '';
+      this.alt = `Goal ${goalNumber}: ${goalData[goalNumber - 1].name}`;
+      this.label = `Goal ${goalNumber}: ${goalData[goalNumber - 1].name}`;
+    }
   }
 
-  /** 
-   * HaxProperties integration via file reference 
-   */
   static get haxProperties() {
     return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url).href;
   }
