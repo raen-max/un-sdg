@@ -5,54 +5,40 @@
   <base href="/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Description for the page -->
   <meta name="description" content="Demonstration for un-sdg">
   <title>un-sdg</title>
   
   <style>
+    /* Basic styles for the document */
     :root, html, body {
       margin: 0;
       padding: 0;
-      background-color: hsl(0, 0%, 94%);
+      background-color: hsl(0, 0%, 94%); /* Set background color */
     }
     #demo {
-      margin: 20px;
+      margin: 20px; /* Margin for demo container */
     }
+    
+    /* Styles for the un-sdg components */
     un-sdg {
-      margin: 20px;
-      border: 1px solid hsl(0, 0%, 80%);
-      border-radius: 8px;
-      display: inline-block;
+      margin: 20px; /* Margin for un-sdg components */
+      border: 1px solid hsl(0, 0%, 80%); /* Light border for visibility */
+      border-radius: 8px; /* Rounded corners */
+      display: inline-block; /* Display inline with block properties */
     }
   </style>
 </head>
 
 <body>
   <div id="demo">
-    <h1>UN Sustainable Development Goals</h1>
-
-    <h2>Random Goal</h2>
-    <button id="random">Randomize Goal</button>
-    <un-sdg id="random-sdg" goal="circle"></un-sdg>
-
-    <h2>Goals 1-17</h2>
-    <div class="sdc-wrapper">
-      ${Array.from({ length: 17 }, (_, i) => `<un-sdg goal="${i + 1}"></un-sdg>`).join('')}
-    </div>
-
-    <h2>Color Only Goals 1-17</h2>
-    <div class="sdc-wrapper">
-      ${Array.from({ length: 17 }, (_, i) => `<un-sdg goal="${i + 1}" colorOnly="true"></un-sdg>`).join('')}
-    </div>
-  </div>
-
-  <script type="module" src="./src/un-sdg.js"></script>
-  <script>
-    document.querySelector('#random').addEventListener('click', function() {
-      const randomGoal = Math.floor(Math.random() * 17) + 1; 
-      const randomSdg = document.getElementById('random-sdg');
-      randomSdg.setAttribute('goal', randomGoal);
-    });
-  </script>
-</body>
-
-</html>
+    <h1>un-sdg</h1> 
+    <!--title-->
+    
+    <h2></h2>
+    <un-sdg></un-sdg> <!-- Default instance of un-sdg component -->
+    
+    <h2></h2>
+    <un-sdg>
+      <div>
