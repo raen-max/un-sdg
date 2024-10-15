@@ -2,93 +2,57 @@
 <html lang="en">
 
 <head>
-  <base href="/">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- Description -->
-  <meta name="description" content="Demonstration for un-sdg">
-  <title>un-sdg</title>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>un-sdg Demo</title>
+  <script type="module">
+    import './raenmax/un-sdg/un-sdg.js/'; // Update with the correct path to your un-sdg.js file
+  </script>
   <style>
-    /* styles for the document */
-    :root, html, body {
-      margin: 0;
-      padding: 0;
+    body {
+      font-family: Arial, sans-serif;
       background-color: hsl(0, 0%, 94%);
-       /*background color */
-    }
-    #udg {
       margin: 20px;
-       /* Margin for container */
     }
-    
-    /* Styles for the un-sdg components */
-    un-sdg {
-      margin: 20px;
-       /* Margin for un-sdg components */
-      border: 1px solid hsl(0, 0%, 80%); 
-      /* Light border for visibility */
-      border-radius: 8px;
-       /* Rounded corners */
-      display: inline-block;
-       /* inline with block properties */
+    .goal-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    button {
+      margin-top: 20px;
     }
   </style>
 </head>
 
 <body>
-  <div id="udg">
-    <h1>un-sdg</h1>
-
-
-    <h2>un-sdg 1-17, Circle, and All</h2>
-    <div class="sdc-wrapper">
-      <!-- Displays the circle and all SDGs from 1 to 17 -->
-      <un-sdg goal="circle"></un-sdg>
-      <un-sdg goal="all"></un-sdg>
-      <un-sdg goal="1"></un-sdg>
-      <un-sdg goal="2"></un-sdg>
-      <un-sdg goal="3"></un-sdg>
-      <un-sdg goal="4"></un-sdg>
-      <un-sdg goal="5"></un-sdg>
-      <un-sdg goal="6"></un-sdg>
-      <un-sdg goal="7"></un-sdg>
-      <un-sdg goal="8"></un-sdg>
-      <un-sdg goal="9"></un-sdg>
-      <un-sdg goal="10"></un-sdg>
-      <un-sdg goal="11"></un-sdg>
-      <un-sdg goal="12"></un-sdg>
-      <un-sdg goal="13"></un-sdg>
-      <un-sdg goal="14"></un-sdg>
-      <un-sdg goal="15"></un-sdg>
-      <un-sdg goal="16"></un-sdg>
-      <un-sdg goal="17"></un-sdg>
-    </div>
-
+  <h1>un-sdg Demo</h1>
   
-    <h2>un-sdg 1-17, Circle, and All with Color Only</h2>
-    <div class="sdc-wrapper">
-      <!-- Displays the circle and all SDGs (color-only) -->
-      <un-sdg goal="circle" color-only></un-sdg>
-      <un-sdg goal="all" color-only></un-sdg>
-      <un-sdg goal="1" color-only></un-sdg>
-      <un-sdg goal="2" color-only></un-sdg>
-      <un-sdg goal="3" color-only></un-sdg>
-      <un-sdg goal="4" color-only></un-sdg>
-      <un-sdg goal="5" color-only></un-sdg>
-      <un-sdg goal="6" color-only></un-sdg>
-      <un-sdg goal="7" color-only></un-sdg>
-      <un-sdg goal="8" color-only></un-sdg>
-      <un-sdg goal="9" color-only></un-sdg>
-      <un-sdg goal="10" color-only></un-sdg>
-      <un-sdg goal="11" color-only></un-sdg>
-      <un-sdg goal="12" color-only></un-sdg>
-      <un-sdg goal="13" color-only></un-sdg>
-      <un-sdg goal="14" color-only></un-sdg>
-      <un-sdg goal="15" color-only></un-sdg>
-      <un-sdg goal="16" color-only></un-sdg>
-      <un-sdg goal="17" color-only></un-sdg>
-    </div>
+  <div class="goal-container">
+    <h2>All Goals</h2>
+    <un-sdg goal="all"></un-sdg>
+    
+    <h2>Individual Goals</h2>
+    ${Array.from({ length: 17 }, (_, i) => html`<un-sdg goal="${i + 1}"></un-sdg>`).join('')}
+    
+    <h2>Circle</h2>
+    <un-sdg goal="circle"></un-sdg>
+    
+    <h2>Color Only Options</h2>
+    ${Array.from({ length: 17 }, (_, i) => html`<un-sdg goal="${i + 1}" color-only></un-sdg>`).join('')}
   </div>
+
+  <button id="random-goal-button">Change First Goal to Random (1-17)</button>
+
+  <script>
+    const randomGoalButton = document.getElementById('random-goal-button');
+    const firstGoalElement = document.querySelector('un-sdg[goal="1"]'); // Reference to the first goal for demonstration
+
+    randomGoalButton.addEventListener('click', () => {
+      const randomGoal = Math.floor(Math.random() * 17) + 1; // Random number between 1-17
+      firstGoalElement.goal = randomGoal.toString(); // Change the goal dynamically
+    });
+  </script>
 </body>
+
+</html>
