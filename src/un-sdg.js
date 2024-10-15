@@ -10,14 +10,18 @@ export class unSdg extends DDDSuper(LitElement) {
   constructor() {
     super();
     this.title = "";
+    this.goal = "circle"
   }
+  /** 
+This initializes properties. */
 
   static get properties() {
     return {
       title: { type: String },
+      goal: {type:String}
     };
   }
-
+/**This defines said properties. */
   static get styles() {
     return [super.styles,
     css`
@@ -28,14 +32,17 @@ export class unSdg extends DDDSuper(LitElement) {
         font-family: var(--ddd-font-navigation);
         font-size: var(--un-sdg-font-size, var(--ddd-font-size-s));
       }
+      /** :host declares varibales for CSS*/
       .wrapper {
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
       }
+       /** */
       div {
         padding: 0;
         margin: 0;
       }
+       /** */
     `];
   }
 
@@ -46,6 +53,12 @@ export class unSdg extends DDDSuper(LitElement) {
   <slot></slot>
 </div>`;
   }
+  updated(changedProperites){
+    if(changedProperites.has('goal')){
+      this.updateAlt();
+  }
+}
+ /** */
 
   /**
    * haxProperties integration via file reference
